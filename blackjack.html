@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+    <h1>Blackjack</h1>
+    <p id="message-el">Want to play a round</p>
+    <p id="card-el">cards:</p>
+    <p id="sum-el">Sum:</p>
+    <button onclick="startgame()">START GAME</button>
+    <button onclick="newcard()">NEW CARD</button>
+
+
+    
+
+
+
+    <script>
+        let firstcard = getrandomcard();
+        let secondcard = getrandomcard();
+        let cards = [firstcard,secondcard]
+        let sum = firstcard + secondcard
+        let message = ""
+        let messageEl = document.getElementById("message-el")
+        let sumEl = document.getElementById("sum-el")
+        let cardEl = document.getElementById("card-el") 
+
+        function getrandomcard(){
+            return Math.floor(Math.random()*13 + 1 )
+            rendergame()
+        }
+        function startgame(){
+            rendergame()
+        }
+        
+        function rendergame(){
+            
+            if (sum <= 20){
+            message = "Do you want to draw a new card"
+        }else if (sum === 21){
+            message = "whohoo! , You've got a blackjack"
+           
+        }else if (sum > 21){
+            message = "You are out of the game"
+            
+        }
+        messageEl.textContent = message
+        sumEl.textContent = "Sum:" + sum ;
+        cardEl.textContent = "cards: "
+        for (let i = 0; i < cards.length; i++ ){
+            cardEl.textContent += cards[i] + " "  
+        }  
+        }
+        function newcard(){
+            
+            let card = getrandomcard()
+            sum += card
+            cards.push(card)
+                
+            rendergame()
+             }
+           
+            
+        
+        
+        
+        
+            
+        
+
+        
+    </script>
+</body>
+</html>
